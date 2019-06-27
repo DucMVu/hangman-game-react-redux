@@ -1,63 +1,41 @@
-// import Editor from 'react-medium-editor'
-// import toMarkdown from 'to-markdown'
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import 'medium-editor/dist/css/medium-editor.css'
-import 'medium-editor/dist/css/themes/default.css'
-import guessLetter from '../actions/guessLetter'
-import isWinner from '../actions/isWinner'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {guessLetter, isWinner} from '../actions/games'
 
-class Input extends PureComponent {
-constructor(props) {
-    super()
-
-    const guess = props
-
-    this.state = guess
-  }
-
-  updateGuess(event) {
-    if (event.keyCode === 13) {
-      this.saveGuess()
-    }
-  }
-
-  saveGuess() {
-    const { word } = this.props
-    var myRE = /^[a-z]+$/i;
-    const guess = this.refs.guess.value.toLowerCase()
-
+class Input extends Component {
+  saveGuess(event) {
+    event.preventDefault()
+    const {word} = this.props
+    var myRE = /^[a-z]+$/i
+    const guess = this.refs.guess.value.toUpperCase()
     if (guess === word) return this.props.isWinner()
     if (guess.match(myRE)) this.props.save(guess)
     this.refs.guess.value = null
   }
 
   render() {
-    return(
-      <div className="editor">
-        <input
-          type="text"
-          ref="guess"
-          className="guess"
-          placeholder="Make a guess"
-          defaultValue={this.state.guess}
-          onChange={this.updateGuess.bind(this)}
-          onKeyDown={this.updateGuess.bind(this)}/>
-
-          <div className="actions">
-            <button className="primary" type="submit" onClick={this.saveGuess.bind(this)}>Guess</button>
-          </div>
+    return (
+      <div className="center container">
+        <form action="" onSubmit={this.saveGuess.bind(this)}>
+          <input
+              type="text"
+              ref="guess"
+              className="center"
+              placeholder="Guess a letter"
+          />
+        </form>
       </div>
     )
+    
   }
 }
 
-const mapStateToProps = ( { guesses, word } ) => {
+const mapStateToProps = state => {
   return {
-    guesses,
-    word
+    guesses: state.guesses,
+    word: state.word
   }
 }
-const mapDispatchToProps = { save: guessLetter, isWinner }
+const mapDispatchToProps = {save: guessLetter, isWinner}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input)

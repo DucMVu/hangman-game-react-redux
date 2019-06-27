@@ -1,54 +1,57 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import Title from './Title'
-import NewGameButton from './newGameButton'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import NewGame from './NewGame'
 import Input from './Input'
 import GameProgress from './GameProgress'
 
-class GameContainer extends PureComponent {
-  gameStatus(props) {
-    const { isWinner } = this.props
+class GameContainer extends Component {
+  gameStatus() {
+    const {isWinner} = this.props
 
-    if (isWinner === null) return (
-      <div className="gameProgress">
-        <Input />
-        <GameProgress />
-      </div>
-    )
+    switch(isWinner) {
+      case null:
+        return (
+          <div className="gameProgress">
+            <Input />
+            <GameProgress />
+          </div>
+        )
 
-    if (!isWinner) return (
-      <div className="gameOver">
-        <p>'Oh, no. Want to try again?'</p>
-      </div>
-    )
+      case false:
+        return (
+          <div className="gameOver">
+            <p>You have made 6 incorrect guesses. Try again?</p>
+          </div>
+        )
 
-    if (isWinner) return (
-      <div className="winner">
-        <p>'Yay!!! You won!!'</p>
-      </div>
-    )
+      case true:
+        return (
+          <div className="winner">
+            <p>You're good. Try again?</p>
+          </div>
+        )
+        
+      default:
+        return null
+    }
   }
-
 
   render() {
     return(
-      <div className="game wrapper">
-        <header>
-          <Title content="Hangman" />
-        </header>
-        <main>
-          { this.gameStatus() }
-          <br/>
-          <NewGameButton />
-        </main>
+      <div className="center container">
+        <h1 className="blue-text">Hangman-react-redux-game</h1>
+        <div className="">
+          {this.gameStatus()}
+          <NewGame />
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ( { isWinner } ) => {
+const mapStateToProps = state => {
   return {
-    isWinner
+    isWinner: state.isWinner
   }
 }
 export default connect(mapStateToProps)(GameContainer)

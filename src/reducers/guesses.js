@@ -1,20 +1,18 @@
-import { GUESS_LETTER } from '../actions/guessLetter'
-import { NEW_GAME } from '../actions/newGame'
-import { GAME_OVER } from '../actions/gameOver'
-import { IS_WINNER } from '../actions/isWinner'
+import {GUESS_LETTER, NEW_GAME, GAME_OVER, IS_WINNER} from '../actions/games'
 
-
-export default (state = [], { type, payload } = {}) => {
-  switch(type) {
-    case NEW_GAME :
+const guesses = (state = [], action) => {
+  switch(action.type) {
+    case NEW_GAME:
       return state = []
-    case GUESS_LETTER :
-      return state.concat(payload)
-    case GAME_OVER :
+    case GUESS_LETTER:
+      return [...state, action.payload]
+    case GAME_OVER:
       return state
-    case IS_WINNER :
+    case IS_WINNER:
       return state
-    default :
+    default:
       return state
   }
 }
+
+export default guesses

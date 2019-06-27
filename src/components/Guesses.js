@@ -1,27 +1,26 @@
-import React, { PureComponent } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
-export class Guesses extends PureComponent {
+export class Guesses extends Component {
   static propTypes = {
     guesses: PropTypes.array.isRequired,
   }
 
-
   render() {
-    const { guesses } = this.props
+    const {guesses} = this.props
 
     return(
       <div>
-      <p>  {guesses.join(", ")} </p>
+        <p>{guesses.join(", ")}</p>
       </div>
     )
   }
 }
 
-const mapStateToProps = ( { guesses }) => {
+const mapStateToProps = state => {
   return {
-    guesses,
+    guesses: state.guesses
   }
 }
 

@@ -1,11 +1,12 @@
-import { NEW_GAME } from '../actions/newGame'
-import wordBank from '../fixtures/words'
+import {NEW_GAME} from '../actions/games'
 
-export default (state = wordBank, { type, payload } = {}) => {
-  switch(type) {
-    case NEW_GAME :
-      return wordBank[Math.floor(Math.random() * wordBank.length)];
-    default :
+const words = require('an-array-of-english-words')
+
+export default (state = words, action) => {
+  switch(action.type) {
+    case NEW_GAME:
+      return words[Math.floor(Math.random() * words.length)].toUpperCase()
+    default:
       return state
   }
 }

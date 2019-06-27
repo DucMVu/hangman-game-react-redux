@@ -1,37 +1,39 @@
-import React, { PureComponent } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import gameOver from '../actions/gameOver'
-import isWinner from '../actions/isWinner'
+import {connect} from 'react-redux'
+import {gameOver, isWinner} from '../actions/games'
 
-export class GameProgress extends PureComponent {
+export class GameProgress extends Component {
   static propTypes = {
     guesses: PropTypes.array.isRequired,
   }
 
   showProgress() {
-    const { guesses, word } = this.props
+    const {guesses, word} = this.props
     const gameStarted = (typeof word === 'string' || word instanceof String)
 
     if (gameStarted) {
       const wordArr = word.split('')
-      return this.progress = wordArr.map(function(letter){
-        if (guesses.includes(letter) === false) return letter = '_'
-        return letter
-      }).join(' ')
+      return this.progress = wordArr
+        .map(letter => {
+          if (guesses.includes(letter) === false) return letter = '_'
+          return letter
+        })
+        .join(' ')
     }
   }
 
   wrongGuessCount() {
-    const { guesses, word } = this.props
-    return guesses.reduce(function(total, guess) {
-       if (word.indexOf(guess) === -1) return total + 1
-       return total
-    }, 0)
+    const {guesses, word} = this.props
+    return guesses
+      .reduce((total, guess) => {
+        if (word.indexOf(guess) === -1) return total + 1
+        return total
+      }, 0)
   }
 
   isWinner() {
-    const { word } = this.props
+    const {word} = this.props
     const gameStarted = (typeof word === 'string' || word instanceof String)
     if (gameStarted) return !this.showProgress().includes('_')
   }
@@ -42,21 +44,22 @@ export class GameProgress extends PureComponent {
   }
   
   render() {
-    const { guesses } = this.props
-    return(
-      <div>
-      <p> {this.showProgress()} </p>
-      <p>  {guesses.join(", ")} </p>
+    const {guesses} = this.props
+
+    return (
+      <div className="input-field collection container">
+        <p>{this.showProgress()}</p>
+        <p>{guesses.join(", ")}</p>
       </div>
     )
   }
 }
 
-const mapStateToProps = ( { guesses, word }) => {
+const mapStateToProps = state => {
   return {
-    guesses,
-    word,
+    guesses: state.guesses,
+    word: state.word
   }
 }
 
-export default connect(mapStateToProps, { gameOver, isWinner })(GameProgress)
+export default connect(mapStateToProps, {gameOver, isWinner})(GameProgress)
