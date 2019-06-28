@@ -3,20 +3,20 @@ import {connect} from 'react-redux'
 import {guessLetter, isWinner} from '../actions/games'
 
 class Input extends Component {
-  saveGuess(event) {
+  saveGuess = event => {
     event.preventDefault()
     const {word} = this.props
     var myRE = /^[a-z]+$/i
     const guess = this.refs.guess.value.toUpperCase()
     if (guess === word) return this.props.isWinner()
-    if (guess.match(myRE)) this.props.save(guess)
+    if (guess.match(myRE)) this.props.guessLetter(guess)
     this.refs.guess.value = null
   }
 
   render() {
     return (
       <div className="center container">
-        <form action="" onSubmit={this.saveGuess.bind(this)}>
+        <form action="" className="container" onSubmit={this.saveGuess}>
           <input
               type="text"
               ref="guess"
@@ -26,7 +26,6 @@ class Input extends Component {
         </form>
       </div>
     )
-    
   }
 }
 
@@ -36,6 +35,6 @@ const mapStateToProps = state => {
     word: state.word
   }
 }
-const mapDispatchToProps = {save: guessLetter, isWinner}
+const mapDispatchToProps = {guessLetter, isWinner}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input)

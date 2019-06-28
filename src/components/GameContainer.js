@@ -19,15 +19,15 @@ class GameContainer extends Component {
 
       case false:
         return (
-          <div className="gameOver">
-            <p>You have made 6 incorrect guesses. Try again?</p>
+          <div className="">
+            <img src="https://media.giphy.com/media/3oFzmdjJGyIfkokhHO/giphy.gif" height="400px" alt="bad guess"/>
           </div>
         )
 
       case true:
         return (
-          <div className="winner">
-            <p>You're good. Try again?</p>
+          <div className="">
+            <img src="https://media.giphy.com/media/ZU9QbQtuI4Xcc/giphy.gif" height="400px" alt="good guess"/>
           </div>
         )
         
@@ -40,10 +40,12 @@ class GameContainer extends Component {
     return(
       <div className="center container">
         <h1 className="blue-text">Hangman-react-redux-game</h1>
-        <div className="">
-          {this.gameStatus()}
-          <NewGame />
-        </div>
+        <br />
+        <h5 className="brown-text"><b>Game rules:</b> Type a letter and hit Enter/Return key. If you're right, keep doing well. If you're wrong, you still have a chance but in total 6 at most. Happy playing!</h5>
+        <br />
+        {this.gameStatus()}
+        <br />
+        <NewGame />
       </div>
     )
   }

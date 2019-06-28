@@ -10,7 +10,7 @@ class NewGame extends Component {
 
   render() {
     return (
-      <a className="waves-effect waves-light btn-large" onClick={() => this.reset()}>New Game</a>
+      <a className="waves-effect waves-light btn-small" onClick={() => this.reset()}>New Game</a>
     )
   }
 }
