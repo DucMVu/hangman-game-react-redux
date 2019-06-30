@@ -39,9 +39,9 @@ class GameContainer extends Component {
   render() {
     return(
       <div className="center container">
-        <h1 className="blue-text">Hangman-react-redux-game</h1>
+        <h1 className="red-text">Hangman-react-redux-game</h1>
         <br />
-        <h5 className="brown-text"><b>Game rules:</b> Type a letter and hit Enter/Return key. If you're right, keep doing greatly! Otherwise you still have another chance but 6 wrong guesses at most. Happy playing!</h5>
+        <h5 className="orange-text"><b>Game rules:</b> Type a letter and hit Enter/Return key. If you're right, keep doing greatly. Avoid making wrong guesses as you have 6 at most. Happy playing!</h5>
         <br />
         {this.gameStatus()}
         <br />

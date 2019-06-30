@@ -21,7 +21,7 @@ class Input extends Component {
               type="text"
               ref="guess"
               className="center"
-              placeholder="Guess a letter"
+              placeholder="GUESS ONE LETTER"
           />
         </form>
       </div>

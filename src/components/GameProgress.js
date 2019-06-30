@@ -48,8 +48,14 @@ export class GameProgress extends Component {
 
     return (
       <div className="input-field collection container">
-        <p>{this.showProgress()}</p>
-        <p>{guesses.join(", ")}</p>
+        <h4>{this.showProgress()}</h4>
+        {
+          !guesses.length ?
+          
+          <p></p> :
+          
+          <h4>Guess(es) made: {guesses.join(", ")}</h4>
+        }
       </div>
     )
   }
