@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {guessLetter, isWinner} from '../actions/games'
+import '../App.css'
 
 class Input extends Component {
   saveGuess = event => {
@@ -22,6 +23,7 @@ class Input extends Component {
               ref="guess"
               className="center"
               placeholder="GUESS ONE LETTER"
+              style={{"border-bottom": "2px solid grey"}}
           />
         </form>
       </div>
