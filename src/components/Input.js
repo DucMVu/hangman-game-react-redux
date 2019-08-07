@@ -23,7 +23,7 @@ class Input extends Component {
               ref="guess"
               className="center"
               placeholder="GUESS ONE LETTER"
-              style={{"border-bottom": "2px solid grey"}}
+              style={{"borderBottom": "2px solid grey"}}
           />
         </form>
       </div>

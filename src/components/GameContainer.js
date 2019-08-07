@@ -21,7 +21,7 @@ class GameContainer extends Component {
         let googleSearch = 'https://www.google.com/search?q=' + word
         return (
           <div className="">
-            <h5 className="purple-text">The answer is {word}. Whaattt? Check its meaning <a href={googleSearch} target="_blank">here</a>.</h5>
+            <h5 className="purple-text">The answer is {word}. Whaattt? Check its meaning <a href={googleSearch} target="_blank" rel='noreferrer noopener'>here</a>.</h5>
             <img src="https://media.giphy.com/media/3oFzmdjJGyIfkokhHO/giphy.gif" height="400px" alt="bad guess"/>
           </div>
         )
