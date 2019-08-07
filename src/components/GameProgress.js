@@ -25,6 +25,7 @@ export class GameProgress extends Component {
 
   wrongGuessCount() {
     const {guesses, word} = this.props
+
     return guesses
       .reduce((total, guess) => {
         if (word.indexOf(guess) === -1) return total + 1
@@ -54,7 +55,11 @@ export class GameProgress extends Component {
           
           <p></p> :
           
-          <h4>Guess(es) made: {guesses.join(", ")}</h4>
+          <h4>
+            Guess(es) made: {guesses.join(", ")}
+            {<br/>}
+            You've made {this.wrongGuessCount()} wrong guess(es)
+          </h4>
         }
       </div>
     )

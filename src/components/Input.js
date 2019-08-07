@@ -37,6 +37,7 @@ const mapStateToProps = state => {
     word: state.word
   }
 }
+
 const mapDispatchToProps = {guessLetter, isWinner}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input)
