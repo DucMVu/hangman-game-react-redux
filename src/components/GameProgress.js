@@ -55,11 +55,11 @@ export class GameProgress extends Component {
           
           <p></p> :
           
-          <h4>
+          <h5>
             Guess(es) made: {guesses.join(", ")}
             {<br/>}
             You've made {this.wrongGuessCount()} wrong guess(es)
-          </h4>
+          </h5>
         }
       </div>
     )
