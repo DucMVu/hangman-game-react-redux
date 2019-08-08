@@ -6,9 +6,13 @@ import '../App.css'
 class Input extends Component {
   saveGuess = event => {
     event.preventDefault()
-    const {word} = this.props
+    const {word, guesses} = this.props
     var myRE = /^[a-z]+$/i
     const guess = this.refs.guess.value.toUpperCase()
+    if (guesses.includes(guess)) {
+      this.refs.guess.value = null
+      return window.alert('Guess has been made already!')
+    }
     if (guess === word) return this.props.isWinner()
     if (guess.match(myRE)) this.props.guessLetter(guess)
     this.refs.guess.value = null
