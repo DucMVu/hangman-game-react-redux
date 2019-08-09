@@ -58,7 +58,7 @@ export class GameProgress extends Component {
           <h5>
             Guess(es) made: {guesses.join(", ")}
             {<br/>}
-            You've made {this.wrongGuessCount()} wrong guess(es)
+            Wrong guess(es) count: <b>{this.wrongGuessCount()}</b>
           </h5>
         }
       </div>
